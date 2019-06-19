@@ -22,7 +22,7 @@ pipeline {
             }
             post {
                 always {
-                    pylint 'pylint.log'
+                    pyLint 'pylint.log'
                 }
             }
         }
