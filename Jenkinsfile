@@ -11,6 +11,21 @@ pipeline {
                 sh 'python -m py_compile sources/add2vals.py sources/calc.py' 
             }
         }
+        stage('Lint') {
+            agent {
+                docker {
+                    image 'eeacms/pylint'
+                }
+            }
+            steps {
+                sh 'pylint sources/test_calc.py --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" > lint-reports/pylint.log'
+            }
+            post {
+                always {
+                    pylint 'lint-reports/pylint.log'
+                }
+            }
+        }
         stage('Test') {
             agent {
                 docker {
