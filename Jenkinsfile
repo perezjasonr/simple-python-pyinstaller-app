@@ -18,7 +18,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'pylint sources/test_calc.py --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" > pylint.log'
+                sh 'pylint sources/test_calc.py --exit-zero --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" > pylint.log'
             }
             post {
                 always {
