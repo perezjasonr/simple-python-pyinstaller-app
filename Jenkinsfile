@@ -22,7 +22,7 @@ pipeline {
             }
             post {
                 always {
-                    recordIssues enabledForFailure: true, tool: pyLint(pattern: 'pylint.log')
+                    publishIssues enabledForFailure: true, tool: pyLint(pattern: 'pylint.log')
                 }
             }
         }
