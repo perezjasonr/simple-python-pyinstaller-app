@@ -19,6 +19,8 @@ pipeline {
             }
             steps {
                 sh 'pylint sources/test_calc.py --msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}" > pylint.log || exit 0'
+                // || exit 0 is for ci we actually want --exit-zero but need newer version of pylint, make my own image?
+
             }
             post {
                 always {
